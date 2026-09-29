@@ -13,8 +13,6 @@ class SpookyCanvasFX {
     this.bats = [];
     this.ghosts = [];
     this.mouse = { x: this.width / 2, y: this.height / 2 };
-    this.lanternMode = false;
-    this.flickerTimer = 0;
     this.animId = null;
 
     // Chargement des images de décorations réalistes
@@ -36,6 +34,15 @@ class SpookyCanvasFX {
       this.mouse.x = e.clientX;
       this.mouse.y = e.clientY;
     });
+
+    const updateTouch = (e) => {
+      if (e.touches && e.touches[0]) {
+        this.mouse.x = e.touches[0].clientX;
+        this.mouse.y = e.touches[0].clientY;
+      }
+    };
+    window.addEventListener('touchstart', updateTouch, { passive: true });
+    window.addEventListener('touchmove', updateTouch, { passive: true });
 
     // 1. Initialiser les braises spectrales
     for (let i = 0; i < 35; i++) {
@@ -105,17 +112,6 @@ class SpookyCanvasFX {
       height: 190 + Math.random() * 80,
       floatSpeed: 0.018 + Math.random() * 0.015
     };
-  }
-
-  toggleLantern() {
-    this.lanternMode = !this.lanternMode;
-    const body = document.body;
-    if (this.lanternMode) {
-      body.classList.add('lantern-active');
-    } else {
-      body.classList.remove('lantern-active');
-    }
-    return this.lanternMode;
   }
 
   animate() {
@@ -193,36 +189,6 @@ class SpookyCanvasFX {
         b.x = this.width + 50;
         b.y = Math.random() * (this.height * 0.4) + 20;
       }
-    }
-
-    // Effet Mode Lanterne
-    if (this.lanternMode) {
-      this.flickerTimer += 0.1;
-      const flicker = 0.95 + Math.sin(this.flickerTimer * 4) * 0.04;
-      const radius = 190 * flicker;
-
-      const grad = this.ctx.createRadialGradient(
-        this.mouse.x, this.mouse.y, radius * 0.3,
-        this.mouse.x, this.mouse.y, radius
-      );
-
-      grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      grad.addColorStop(0.65, 'rgba(10, 6, 16, 0.65)');
-      grad.addColorStop(1, 'rgba(5, 2, 8, 0.96)');
-
-      this.ctx.fillStyle = grad;
-      this.ctx.fillRect(0, 0, this.width, this.height);
-
-      const glow = this.ctx.createRadialGradient(
-        this.mouse.x, this.mouse.y, 0,
-        this.mouse.x, this.mouse.y, radius * 0.6
-      );
-      glow.addColorStop(0, 'rgba(255, 170, 50, 0.22)');
-      glow.addColorStop(0.5, 'rgba(255, 120, 20, 0.08)');
-      glow.addColorStop(1, 'rgba(255, 100, 0, 0)');
-
-      this.ctx.fillStyle = glow;
-      this.ctx.fillRect(0, 0, this.width, this.height);
     }
   }
 

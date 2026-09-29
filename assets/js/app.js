@@ -490,18 +490,6 @@ function setupEventListeners() {
     });
   }
 
-  // Bouton Mode Lanterne
-  const lanternBtn = document.getElementById('lantern-toggle-btn');
-  if (lanternBtn) {
-    lanternBtn.addEventListener('click', () => {
-      if (typeof spookyCanvas !== 'undefined') {
-        const active = spookyCanvas.toggleLantern();
-        lanternBtn.classList.toggle('active', active);
-        if (typeof spookyAudio !== 'undefined') spookyAudio.playBloodDrip();
-      }
-    });
-  }
-
   // Cloche d'Halloween au clic sur le bouton promo hero
   const heroBell = document.getElementById('hero-bell-btn');
   if (heroBell) {

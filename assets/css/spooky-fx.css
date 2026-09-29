@@ -386,21 +386,3 @@
   pointer-events: none;
   z-index: 3;
 }
-
-/* Mode Lanterne */
-body.lantern-active {
-  cursor: crosshair;
-}
-
-body.lantern-active .hero-section {
-  filter: brightness(0.7) contrast(1.2);
-}
-
-body.lantern-active .product-card {
-  filter: brightness(0.75);
-  transition: filter 0.3s;
-}
-
-body.lantern-active .product-card:hover {
-  filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 170, 50, 0.5));
-}

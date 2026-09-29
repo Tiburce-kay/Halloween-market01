@@ -17,7 +17,7 @@
 </head>
 <body>
 
-  <!-- Canvas Interactif (Chauves-souris, Braises spectrales & Mode Lanterne) -->
+  <!-- Canvas Interactif (Chauves-souris, Fantômes & Braises spectrales) -->
   <canvas id="spooky-canvas"></canvas>
 
   <!-- Toiles d'araignées décoratives dans les coins -->
@@ -68,12 +68,6 @@
         <button id="sound-toggle-btn" class="ctrl-btn active" title="Couper l'ambiance sonore (Mettre en sourdine)">
           <span class="icon">🔊</span>
           <span class="label">Ambiance : Activée</span>
-        </button>
-
-        <!-- Bouton Mode Lanterne -->
-        <button id="lantern-toggle-btn" class="ctrl-btn" title="Plonger le site dans le noir avec une lanterne">
-          <span class="icon">🔦</span>
-          <span class="label">Lanterne</span>
         </button>
 
         <!-- Panier (Chaudron) -->
@@ -146,34 +140,34 @@
   </section>
 
   <!-- BANDEAU DE GARANTIES MACABRES -->
-  <section class="container" style="margin-top: -30px; margin-bottom: 50px;">
-    <div style="background: rgba(22, 13, 10, 0.92); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 22px 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.85), 0 0 20px rgba(255, 123, 0, 0.1);">
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #ff7b00);">📦</span>
+  <section class="container guarantees-section">
+    <div class="guarantees-grid">
+      <div class="guarantee-item">
+        <span class="guarantee-icon" style="filter: drop-shadow(0 0 8px #ff7b00);">📦</span>
         <div>
-          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Livraison par Corbeaux</strong>
-          <span style="color: var(--text-muted); font-size: 0.8rem;">Colis scellé à la cire noire protectrice</span>
+          <strong class="guarantee-title">Livraison par Corbeaux</strong>
+          <span class="guarantee-sub">Colis scellé à la cire noire protectrice</span>
         </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #ff0055);">💀</span>
+      <div class="guarantee-item">
+        <span class="guarantee-icon" style="filter: drop-shadow(0 0 8px #ff0055);">💀</span>
         <div>
-          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Authentiquement Hanté</strong>
-          <span style="color: var(--text-muted); font-size: 0.8rem;">Certifié par le cercle des nécromanciens</span>
+          <strong class="guarantee-title">Authentiquement Hanté</strong>
+          <span class="guarantee-sub">Certifié par le cercle des nécromanciens</span>
         </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #00ff88);">📜</span>
+      <div class="guarantee-item">
+        <span class="guarantee-icon" style="filter: drop-shadow(0 0 8px #00ff88);">📜</span>
         <div>
-          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Pacte de Rétractation</strong>
-          <span style="color: var(--text-muted); font-size: 0.8rem;">13 nuits pour exorciser ou échanger</span>
+          <strong class="guarantee-title">Pacte de Rétractation</strong>
+          <span class="guarantee-sub">13 nuits pour exorciser ou échanger</span>
         </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #ff7b00);">⚰️</span>
+      <div class="guarantee-item">
+        <span class="guarantee-icon" style="filter: drop-shadow(0 0 8px #ff7b00);">⚰️</span>
         <div>
-          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Cryptage Obscur</strong>
-          <span style="color: var(--text-muted); font-size: 0.8rem;">Transactions sous scellement occulte</span>
+          <strong class="guarantee-title">Cryptage Obscur</strong>
+          <span class="guarantee-sub">Transactions sous scellement occulte</span>
         </div>
       </div>
     </div>
@@ -241,53 +235,53 @@
   </section>
 
   <!-- TÉMOIGNAGES D'OUTRE-TOMBE -->
-  <section class="container" style="padding: 80px 0;">
+  <section class="container testimonials-section">
     <div class="section-header">
       <span class="section-tag">✦ Témoignages Paranormaux ✦</span>
       <h2 class="section-title">LES MURMURES DES SURVIVANTS</h2>
       <p class="section-subtitle">Ils ont bravé la crypte et commandé nos reliques... voici leurs derniers récits.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
+    <div class="testimonials-grid">
       
-      <div style="background: var(--bg-card); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 28px; position: relative;">
-        <div style="color: #ffb703; font-size: 1.1rem; margin-bottom: 12px;">★★★★★</div>
-        <p style="font-style: italic; color: var(--text-bone); margin-bottom: 18px; line-height: 1.6;">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
           « J'ai posé le Grimoire de Nécromancie sur mon buffet le 13 octobre. Depuis, mon chat refuse d'entrer dans la pièce et une odeur de soufre flotte à 3h du matin. Une splendeur artisanale ! »
         </p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 42px; height: 42px; border-radius: 50%; background: #1f110c; border: 1px solid var(--color-blood); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🕯️</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="border-color: var(--color-blood);">🕯️</div>
           <div>
-            <strong style="color: var(--color-pumpkin); font-size: 0.95rem; display: block;">Éléonore de Valmont</strong>
-            <span style="color: var(--text-muted); font-size: 0.78rem;">Collectionneuse d'Arkham</span>
+            <strong class="author-name">Éléonore de Valmont</strong>
+            <span class="author-title">Collectionneuse d'Arkham</span>
           </div>
         </div>
       </div>
 
-      <div style="background: var(--bg-card); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 28px; position: relative;">
-        <div style="color: #ffb703; font-size: 1.1rem; margin-bottom: 12px;">★★★★★</div>
-        <p style="font-style: italic; color: var(--text-bone); margin-bottom: 18px; line-height: 1.6;">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
           « Le Masque d'Invocateur est terrifiant de réalisme. Lors du dîner aux chandelles d'Halloween, deux de mes convives se sont évanouis. L'effet de surprise a dépassé toutes mes espérances. »
         </p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 42px; height: 42px; border-radius: 50%; background: #1f120a; border: 1px solid var(--color-pumpkin); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🎭</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="border-color: var(--color-pumpkin);">🎭</div>
           <div>
-            <strong style="color: var(--color-pumpkin); font-size: 0.95rem; display: block;">Lord Malakor</strong>
-            <span style="color: var(--text-muted); font-size: 0.78rem;">Maître des Cérémonies Sombres</span>
+            <strong class="author-name">Lord Malakor</strong>
+            <span class="author-title">Maître des Cérémonies Sombres</span>
           </div>
         </div>
       </div>
 
-      <div style="background: var(--bg-card); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 28px; position: relative;">
-        <div style="color: #ffb703; font-size: 1.1rem; margin-bottom: 12px;">★★★★★</div>
-        <p style="font-style: italic; color: var(--text-bone); margin-bottom: 18px; line-height: 1.6;">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
           « La Potion de Poison Spectral éclaire toute ma bibliothèque d'une lumière d'émeraude toxique. Emballage soigné avec de la vraie mousse séchée et des sceaux en cire rouge. »
         </p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 42px; height: 42px; border-radius: 50%; background: #061f12; border: 1px solid var(--color-spectral); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🧪</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="border-color: var(--color-spectral);">🧪</div>
           <div>
-            <strong style="color: var(--color-pumpkin); font-size: 0.95rem; display: block;">Gaspard le Nécromant</strong>
-            <span style="color: var(--text-muted); font-size: 0.78rem;">Alchimiste de Salem</span>
+            <strong class="author-name">Gaspard le Nécromant</strong>
+            <span class="author-title">Alchimiste de Salem</span>
           </div>
         </div>
       </div>
@@ -296,7 +290,7 @@
   </section>
 
   <!-- NEWSLETTER DU PACTE NOIR -->
-  <section class="container" style="margin-bottom: 90px;">
+  <section class="container pact-section">
     <div class="newsletter-pact-card">
       <div class="pact-icon-wrapper">
         <span class="pact-icon">🩸</span>

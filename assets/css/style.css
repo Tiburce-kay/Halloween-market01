@@ -236,7 +236,7 @@ body {
   pointer-events: none;
 }
 
-/* Boutons de contrôle (Musique Halloween, Lanterne, Panier) */
+/* Boutons de contrôle (Ambiance Sonore & Chaudron) */
 .header-actions {
   display: flex;
   align-items: center;
@@ -550,6 +550,132 @@ body {
 }
 
 /* ==========================================================================
+   BANDEAU DE GARANTIES MACABRES
+   ========================================================================== */
+.guarantees-section {
+  margin-top: -30px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 10;
+}
+
+.guarantees-grid {
+  background: rgba(22, 13, 10, 0.92);
+  border: 1px solid var(--border-crypt);
+  border-radius: 18px;
+  padding: 22px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.85), 0 0 20px rgba(255, 123, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.guarantee-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.guarantee-title {
+  color: var(--text-bone);
+  font-size: 0.95rem;
+  display: block;
+}
+
+.guarantee-sub {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: block;
+}
+
+/* ==========================================================================
+   TÉMOIGNAGES PARANORMAUX
+   ========================================================================== */
+.testimonials-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-crypt);
+  border-radius: 18px;
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-smooth);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 123, 0, 0.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.testimonial-stars {
+  color: #ffb703;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--text-bone);
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.testimonial-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1f110c;
+  border: 1px solid var(--color-blood);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.author-name {
+  color: var(--color-pumpkin);
+  font-size: 0.95rem;
+  display: block;
+}
+
+.author-title {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  display: block;
+}
+
+.pact-section {
+  margin-bottom: 90px;
+}
+
+/* ==========================================================================
    BARRE DE FILTRES ET BOUTIQUE
    ========================================================================== */
 .shop-section {
@@ -669,7 +795,7 @@ body {
    ========================================================================== */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 32px;
 }
 
@@ -980,7 +1106,7 @@ body {
 
 .tarot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 28px;
   margin-top: 40px;
 }
@@ -1109,20 +1235,22 @@ body {
 .cart-drawer {
   position: fixed;
   top: 0;
-  right: -480px;
+  right: 0;
+  transform: translateX(100%);
   width: min(480px, 100vw);
   height: 100vh;
+  height: 100dvh;
   background: #0d0714;
   border-left: 1px solid var(--border-crypt);
   z-index: 205;
   display: flex;
   flex-direction: column;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: -15px 0 45px rgba(0, 0, 0, 0.9);
 }
 
 .cart-drawer.open {
-  right: 0;
+  transform: translateX(0);
 }
 
 .cart-header {
@@ -1842,37 +1970,653 @@ body {
   margin-top: 6px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .modal-grid {
-    grid-template-columns: 1fr;
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM
+   Mobile First & Progressive Adaptation (320px -> 1200px+)
+   ========================================================================== */
+
+/* --- TABLETS & DESKTOPS INTERMEDIAIRES (max-width: 1100px) --- */
+@media (max-width: 1100px) {
+  .guarantees-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px 24px;
   }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .tarot-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
 }
 
-@media (max-width: 680px) {
+/* --- TABLETS PORTRAIT (max-width: 900px) --- */
+@media (max-width: 900px) {
+  .container {
+    padding: 0 20px;
+  }
+
   .header-container {
+    padding: 10px 20px;
     flex-wrap: wrap;
     gap: 12px;
   }
+
   .search-bar-box {
     order: 3;
     max-width: 100%;
-    margin: 6px 0 0;
+    width: 100%;
+    margin: 4px 0 0;
   }
+
+  .hero-section {
+    min-height: auto;
+    padding: 60px 20px 70px;
+  }
+
   .hero-glass-card {
-    padding: 24px 18px;
+    padding: 32px 24px;
+    border-radius: 24px;
   }
-  .footer-grid {
-    grid-template-columns: 1fr;
+
+  .shop-section {
+    padding: 60px 0 80px;
   }
+
   .filter-toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 16px;
+    padding: 16px 20px;
   }
+
   .filter-actions-right {
     justify-content: space-between;
+    width: 100%;
+  }
+
+  .modal-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .modal-art-wrapper svg {
+    width: 180px;
+    height: 180px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .realistic-deco-coffin,
+  .realistic-deco-reaper {
+    display: none !important;
+  }
+}
+
+/* --- SMARTPHONES & PETITES TABLETTES (max-width: 680px) --- */
+@media (max-width: 680px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Topbar notifications */
+  .spooky-topbar {
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+
+  /* Header mobile */
+  .header-container {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo-pumpkin {
+    font-size: 1.8rem;
+  }
+
+  .logo-title {
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+  }
+
+  .logo-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  /* Masquer le texte long des boutons pour ne garder que les icônes sur mobile */
+  .ctrl-btn {
+    padding: 7px 11px;
+    font-size: 0.76rem;
+    gap: 5px;
+  }
+
+  .ctrl-btn .label {
+    display: none;
+  }
+
+  .cart-btn {
+    padding: 7px 13px;
+  }
+
+  .search-bar-box {
+    margin: 4px 0 0;
+  }
+
+  .search-input {
+    padding: 8px 14px 8px 38px;
+    font-size: 0.86rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 40px 14px 50px;
+  }
+
+  .hero-glass-card {
+    padding: 24px 14px;
+    border-radius: 18px;
+  }
+
+  .hero-subtitle-tag {
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem;
+    margin-bottom: 22px;
+    line-height: 1.55;
+  }
+
+  .countdown-box {
+    width: 100%;
+    max-width: 340px;
+    padding: 12px 14px;
+    margin-bottom: 22px;
+  }
+
+  .countdown-label {
+    font-size: 0.74rem;
+    margin-bottom: 8px;
+  }
+
+  .countdown-timer {
+    gap: 6px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .timer-val {
+    font-size: 1.35rem;
+    min-width: 44px;
+    padding: 3px 6px;
+    border-radius: 6px;
+  }
+
+  .timer-tag {
+    font-size: 0.6rem;
+  }
+
+  .timer-sep {
+    font-size: 1.2rem;
+    margin-top: -6px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+  }
+
+  /* Garanties macabres */
+  .guarantees-section {
+    margin-top: -15px;
+    margin-bottom: 35px;
+  }
+
+  .guarantees-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+  }
+
+  .guarantee-icon {
+    font-size: 1.8rem;
+  }
+
+  /* Filtres & Boutique */
+  .shop-section {
+    padding: 40px 0 60px;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-tag {
+    font-size: 0.74rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.86rem;
+  }
+
+  .filter-toolbar {
+    padding: 12px 14px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+
+  /* Défilement horizontal fluide des catégories */
+  .categories-pills {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    width: 100%;
+  }
+
+  .categories-pills::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .categories-pills::-webkit-scrollbar-thumb {
+    background: rgba(255, 123, 0, 0.4);
+    border-radius: 2px;
+  }
+
+  .cat-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+  }
+
+  .filter-actions-right {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .curse-select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+
+  .products-count-badge {
+    text-align: center;
+    font-size: 0.78rem;
+  }
+
+  /* Grille des Produits */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .product-card {
+    border-radius: 16px;
+  }
+
+  .card-visual {
+    height: 190px;
+    padding: 12px;
+  }
+
+  .art-svg {
+    width: 130px;
+    height: 130px;
+  }
+
+  .card-content {
+    padding: 16px 14px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+  }
+
+  .card-meta {
+    font-size: 0.76rem;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  .card-footer {
+    gap: 8px;
+  }
+
+  .card-price {
+    font-size: 1.15rem;
+  }
+
+  .add-cart-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Tarot */
+  .tarot-section {
+    padding: 45px 0;
+  }
+
+  .tarot-grid {
+    grid-template-columns: 1fr;
+    max-width: 310px;
+    margin: 24px auto 0;
+    gap: 16px;
+  }
+
+  .tarot-card {
+    height: 340px;
+  }
+
+  .tarot-back, .tarot-front {
+    padding: 18px 14px;
+    border-radius: 14px;
+  }
+
+  .tarot-symbol {
+    font-size: 2.8rem;
+    margin-bottom: 8px;
+  }
+
+  .tarot-name {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .tarot-prophecy {
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+  }
+
+  /* Témoignages */
+  .testimonials-section {
+    padding: 45px 0;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .testimonial-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .testimonial-text {
+    font-size: 0.88rem;
+    margin-bottom: 14px;
+  }
+
+  /* Newsletter Pacte */
+  .pact-section {
+    margin-bottom: 45px;
+  }
+
+  .newsletter-pact-card {
+    padding: 28px 16px;
+    border-radius: 18px;
+  }
+
+  .pact-icon {
+    font-size: 2.4rem;
+  }
+
+  .pact-title {
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    margin-bottom: 10px;
+  }
+
+  .pact-desc {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+  }
+
+  .pact-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pact-input-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .pact-input {
+    padding: 11px 16px 11px 40px;
+    font-size: 0.86rem;
+  }
+
+  .pact-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 20px;
+    font-size: 0.88rem;
+  }
+
+  /* Footer */
+  .footer-crypt {
+    padding: 40px 0 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    margin-bottom: 30px;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+  }
+
+  .footer-bottom {
+    padding-top: 20px;
+    font-size: 0.74rem;
+  }
+
+  /* Panier Drawer Mobile */
+  .cart-drawer {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  .cart-header {
+    padding: 16px 18px;
+  }
+
+  .cart-items-container {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .cart-item {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .cart-item-art {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cart-item-art svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cart-item-title {
+    font-size: 0.85rem;
+  }
+
+  .cart-footer {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .promo-input {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  .cart-summary-line {
+    font-size: 0.82rem;
+  }
+
+  .cart-summary-line.total-line {
+    font-size: 1.1rem;
+  }
+
+  /* Modales */
+  .modal-wrapper {
+    padding: 10px;
+  }
+
+  .modal-box {
+    padding: 22px 14px;
+    border-radius: 18px;
+    max-height: 94vh;
+    max-height: 94dvh;
+  }
+
+  .modal-close-corner {
+    top: 10px;
+    right: 12px;
+    font-size: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+  }
+
+  .modal-price {
+    font-size: 1.4rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .checkout-modal-box {
+    padding: 22px 14px;
+  }
+
+  .pact-pentagram {
+    font-size: 2.2rem;
+  }
+
+  .pact-header h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Toiles d'araignées et décors mobiles */
+  .cobweb {
+    width: 60px;
+    height: 60px;
+    opacity: 0.22;
+  }
+
+  .realistic-deco-coffin,
+  .realistic-deco-reaper {
+    display: none !important;
+  }
+}
+
+/* --- TRES PETITS ECRANS (max-width: 380px) --- */
+@media (max-width: 380px) {
+  .logo-title {
+    font-size: 1rem;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+
+  .ctrl-btn {
+    padding: 6px 8px;
+  }
+
+  .timer-val {
+    font-size: 1.15rem;
+    min-width: 38px;
+    padding: 2px 4px;
+  }
+
+  .timer-sep {
+    font-size: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
   }
 }

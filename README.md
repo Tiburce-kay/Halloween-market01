@@ -1,13 +1,12 @@
 # 🎃 L'Antre des Âmes Perdues - Marché Occulte d'Halloween
 
-Boutique e-commerce occulte et immersive dédiée à la nuit d'Halloween. Reliée à la crypte d'Arkham avec prix en FCFA, bande sonore culte de John Carpenter, mode lanterne interactive, effets visuels avancés (Canvas FX, apparitions spectrales) et catalogue de reliques maudites.
+Boutique e-commerce occulte et immersive dédiée à la nuit d'Halloween. Reliée à la crypte d'Arkham avec prix en FCFA, bande sonore culte de John Carpenter, effets visuels avancés (Canvas FX, apparitions spectrales) et catalogue de reliques maudites.
 
 ---
 
 ## 🕯️ Fonctionnalités Principales
 
 - **Ambiance Sonore Immersive** : Thème culte d'Halloween, rires démoniaques, tonnerre, cloches funèbres et gouttes de sang (Web Audio API & HTML5 Audio).
-- **Mode Lanterne Interactive** : Plonge le site dans une obscurité totale avec un faisceau de lumière réactif au curseur.
 - **Catalogue de Reliques** : Grimoires, élixirs bioluminescents, calices vampires, dagues sacrificielles avec artworks vectoriels personnalisés.
 - **Filtrage & Recherche en Temps Réel** : Par catégorie de relique et par niveau de malédiction.
 - **Chaudron Magique (Panier en FCFA)** : Gestion des quantités, calcul automatique, code promo occulte (`ESPRITFREE`, `SABBAT13`, `SAMHAIN31`).
