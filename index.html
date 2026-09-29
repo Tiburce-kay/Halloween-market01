@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Antre des Âmes Perdues - Reliques & Objets d'Halloween</title>
+  <meta name="description" content="Boutique occulte d'Halloween. Grimoires maudits, potions luminescentes, masques démoniaques et reliques gothiques scellées par pacte de sang.">
+  
+  <!-- Polices Gothiques & Occultes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Creepster&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Feuilles de Style -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/spooky-fx.css">
+</head>
+<body>
+
+  <!-- Canvas Interactif (Chauves-souris, Braises spectrales & Mode Lanterne) -->
+  <canvas id="spooky-canvas"></canvas>
+
+  <!-- Toiles d'araignées décoratives dans les coins -->
+  <svg class="cobweb cobweb-top-left" viewBox="0 0 100 100" fill="none" stroke="#d4af37" stroke-width="0.8">
+    <path d="M0,0 L100,0 M0,0 L0,100 M0,0 L85,85 M0,0 L50,95 M0,0 L95,50 M0,0 L25,98 M0,0 L98,25"/>
+    <path d="M0,20 Q20,20 20,0 M0,40 Q40,40 40,0 M0,65 Q65,65 65,0 M0,90 Q90,90 90,0" stroke-width="0.5"/>
+    <!-- Petite araignée suspendue -->
+    <line x1="85" y1="85" x2="85" y2="120" stroke="#aaa" stroke-width="0.5" stroke-dasharray="2 2"/>
+    <circle cx="85" cy="122" r="3" fill="#111" stroke="#ff0055" stroke-width="0.8"/>
+  </svg>
+
+  <svg class="cobweb cobweb-top-right" viewBox="0 0 100 100" fill="none" stroke="#d4af37" stroke-width="0.8">
+    <path d="M0,0 L100,0 M0,0 L0,100 M0,0 L85,85 M0,0 L50,95 M0,0 L95,50 M0,0 L25,98 M0,0 L98,25"/>
+    <path d="M0,20 Q20,20 20,0 M0,40 Q40,40 40,0 M0,65 Q65,65 65,0 M0,90 Q90,90 90,0" stroke-width="0.5"/>
+  </svg>
+
+  <!-- Bannière Murmures d'Outre-Tombe -->
+  <div class="spooky-topbar">
+    <span class="topbar-tag">🩸 Pacte de Sang</span>
+    <span id="spooky-whisper-text">« Ils savent que tu es là... Le voile entre les mondes se déchire. »</span>
+    <span style="opacity: 0.65;">| Offre secrète : Code <strong>HALLOWEEN666</strong> (-30%)</span>
+  </div>
+
+  <!-- Barre de Navigation Principale -->
+  <header class="header-main">
+    <div class="header-container">
+      
+      <!-- Logo de la Boutique -->
+      <a href="#" class="logo" title="L'Antre des Âmes Perdues">
+        <span class="logo-pumpkin interactive-pumpkin" title="Cliquez pour réveiller l'esprit !">🎃</span>
+        <div class="logo-text">
+          <span class="logo-title">L'ANTRE DES ÂMES</span>
+          <span class="logo-sub">Marché Occulte d'Halloween</span>
+        </div>
+      </a>
+
+      <!-- Recherche de Reliques en direct -->
+      <div class="search-bar-box">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Invoquer une relique, un grimoire, un poison..." autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Contrôles Interactifs -->
+      <div class="header-actions">
+        <!-- Bouton Ambiance Sonore -->
+        <button id="sound-toggle-btn" class="ctrl-btn active" title="Couper l'ambiance sonore (Mettre en sourdine)">
+          <span class="icon">🔊</span>
+          <span class="label">Ambiance : Activée</span>
+        </button>
+
+        <!-- Bouton Mode Lanterne -->
+        <button id="lantern-toggle-btn" class="ctrl-btn" title="Plonger le site dans le noir avec une lanterne">
+          <span class="icon">🔦</span>
+          <span class="label">Lanterne</span>
+        </button>
+
+        <!-- Panier (Chaudron) -->
+        <button id="cart-toggle-btn" class="ctrl-btn cart-btn" onclick="toggleCartDrawer()">
+          <span>🫕 Chaudron</span>
+          <span id="cart-count" class="cart-count-badge">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Dégoulinure de Sang sous l'entête -->
+  <div class="blood-drip-border"></div>
+
+  <!-- SECTION HERO BANNER IMMERSIF -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-subtitle-tag">
+        <span>✦</span> Nuit Sacrée du 31 Octobre <span>✦</span>
+      </div>
+
+      <h1 class="hero-title">
+        MARCHÉ DES RELIQUES <br>
+        <span class="glow-accent">& D'ARTEFACTS MAUDITS</span>
+      </h1>
+
+      <!-- Compte à rebours du Sabbat de Minuit -->
+      <div class="countdown-box">
+        <div class="countdown-label">
+          <span>🕯️</span> Le Voile se Déchire à Minuit Dans :
+        </div>
+        <div class="countdown-timer">
+          <div class="timer-unit">
+            <span id="timer-days" class="timer-val">31</span>
+            <span class="timer-tag">Jours</span>
+          </div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit">
+            <span id="timer-hours" class="timer-val">09</span>
+            <span class="timer-tag">Heures</span>
+          </div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit">
+            <span id="timer-mins" class="timer-val">42</span>
+            <span class="timer-tag">Minutes</span>
+          </div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit">
+            <span id="timer-secs" class="timer-val">13</span>
+            <span class="timer-tag">Secondes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boutons d'Action -->
+      <div class="hero-actions">
+        <a href="#shop-section" class="btn btn-blood btn-lg">
+          <span>🩸 Descendre dans la Crypte</span>
+        </a>
+        <button id="hero-bell-btn" class="btn btn-secondary btn-lg">
+          <span>🔔 Sonner le Glas Funèbre</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Brume au sol -->
+    <div class="creeping-fog-layer"></div>
+  </section>
+
+  <!-- BANDEAU DE GARANTIES MACABRES -->
+  <section class="container" style="margin-top: -30px; margin-bottom: 50px;">
+    <div style="background: rgba(22, 13, 10, 0.92); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 22px 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.85), 0 0 20px rgba(255, 123, 0, 0.1);">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #ff7b00);">📦</span>
+        <div>
+          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Livraison par Corbeaux</strong>
+          <span style="color: var(--text-muted); font-size: 0.8rem;">Colis scellé à la cire noire protectrice</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #ff0055);">💀</span>
+        <div>
+          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Authentiquement Hanté</strong>
+          <span style="color: var(--text-muted); font-size: 0.8rem;">Certifié par le cercle des nécromanciens</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #00ff88);">📜</span>
+        <div>
+          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Pacte de Rétractation</strong>
+          <span style="color: var(--text-muted); font-size: 0.8rem;">13 nuits pour exorciser ou échanger</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px #ff7b00);">⚰️</span>
+        <div>
+          <strong style="color: var(--text-bone); font-size: 0.95rem; display: block;">Cryptage Obscur</strong>
+          <span style="color: var(--text-muted); font-size: 0.8rem;">Transactions sous scellement occulte</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUTIQUE OCCULTE (PRODUITS & FILTRES) -->
+  <main id="shop-section" class="shop-section">
+    <div class="container">
+      
+      <div class="section-header">
+        <span class="section-tag">✦ Catalogue des Reliques de la Nuit ✦</span>
+        <h2 class="section-title">LES RELIQUES DE LA CRYPTE</h2>
+        <p class="section-subtitle">
+          Sélectionnez vos objets de pouvoir. Chaque pièce porte l'empreinte d'une malédiction authentique.
+        </p>
+      </div>
+
+      <!-- Barre d'outils des Filtres -->
+      <div class="filter-toolbar">
+        <div class="categories-pills">
+          <button class="cat-btn active" data-cat="all">Tous les Artefacts</button>
+          <button class="cat-btn" data-cat="grimoires">Grimoires</button>
+          <button class="cat-btn" data-cat="potions">Potions & Poisons</button>
+          <button class="cat-btn" data-cat="masques">Masques d'Effroi</button>
+          <button class="cat-btn" data-cat="reliques">Reliques Anciennes</button>
+          <button class="cat-btn" data-cat="costumes">Costumes & Parures</button>
+          <button class="cat-btn" data-cat="decorations">Décorations Macabres</button>
+        </div>
+
+        <div class="filter-actions-right">
+          <select id="curse-filter" class="curse-select" title="Filtrer par niveau de malédiction">
+            <option value="all">Toutes les malédictions</option>
+            <option value="curse-low">Niveau : Faible</option>
+            <option value="curse-danger">Niveau : Dangereux</option>
+            <option value="curse-deadly">Niveau : Mortel</option>
+            <option value="curse-forbidden">Niveau : Interdit (Banni)</option>
+          </select>
+          <span id="products-count" class="products-count-badge">12 reliques scellées</span>
+        </div>
+      </div>
+
+      <!-- Grille des Cartes Produits -->
+      <div id="products-grid" class="products-grid">
+        <!-- Rendu dynamique en JS via app.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MINI-JEU : LE TAROT DE L'INFORTUNE -->
+  <section class="tarot-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">✦ Destin & Réductions Occultes ✦</span>
+        <h2 class="section-title">LE TAROT DE L'INFORTUNE</h2>
+        <p class="section-subtitle">
+          Osez retourner l'une des arcanes maudites pour connaître votre sortilège du jour et remporter un code promo réservé aux initiés.
+        </p>
+      </div>
+
+      <div id="tarot-cards-grid" class="tarot-grid">
+        <!-- Cartes générées par JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES D'OUTRE-TOMBE -->
+  <section class="container" style="padding: 80px 0;">
+    <div class="section-header">
+      <span class="section-tag">✦ Témoignages Paranormaux ✦</span>
+      <h2 class="section-title">LES MURMURES DES SURVIVANTS</h2>
+      <p class="section-subtitle">Ils ont bravé la crypte et commandé nos reliques... voici leurs derniers récits.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
+      
+      <div style="background: var(--bg-card); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 28px; position: relative;">
+        <div style="color: #ffb703; font-size: 1.1rem; margin-bottom: 12px;">★★★★★</div>
+        <p style="font-style: italic; color: var(--text-bone); margin-bottom: 18px; line-height: 1.6;">
+          « J'ai posé le Grimoire de Nécromancie sur mon buffet le 13 octobre. Depuis, mon chat refuse d'entrer dans la pièce et une odeur de soufre flotte à 3h du matin. Une splendeur artisanale ! »
+        </p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: #1f110c; border: 1px solid var(--color-blood); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🕯️</div>
+          <div>
+            <strong style="color: var(--color-pumpkin); font-size: 0.95rem; display: block;">Éléonore de Valmont</strong>
+            <span style="color: var(--text-muted); font-size: 0.78rem;">Collectionneuse d'Arkham</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 28px; position: relative;">
+        <div style="color: #ffb703; font-size: 1.1rem; margin-bottom: 12px;">★★★★★</div>
+        <p style="font-style: italic; color: var(--text-bone); margin-bottom: 18px; line-height: 1.6;">
+          « Le Masque d'Invocateur est terrifiant de réalisme. Lors du dîner aux chandelles d'Halloween, deux de mes convives se sont évanouis. L'effet de surprise a dépassé toutes mes espérances. »
+        </p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: #1f120a; border: 1px solid var(--color-pumpkin); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🎭</div>
+          <div>
+            <strong style="color: var(--color-pumpkin); font-size: 0.95rem; display: block;">Lord Malakor</strong>
+            <span style="color: var(--text-muted); font-size: 0.78rem;">Maître des Cérémonies Sombres</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-crypt); border-radius: 18px; padding: 28px; position: relative;">
+        <div style="color: #ffb703; font-size: 1.1rem; margin-bottom: 12px;">★★★★★</div>
+        <p style="font-style: italic; color: var(--text-bone); margin-bottom: 18px; line-height: 1.6;">
+          « La Potion de Poison Spectral éclaire toute ma bibliothèque d'une lumière d'émeraude toxique. Emballage soigné avec de la vraie mousse séchée et des sceaux en cire rouge. »
+        </p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: #061f12; border: 1px solid var(--color-spectral); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🧪</div>
+          <div>
+            <strong style="color: var(--color-pumpkin); font-size: 0.95rem; display: block;">Gaspard le Nécromant</strong>
+            <span style="color: var(--text-muted); font-size: 0.78rem;">Alchimiste de Salem</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER DU PACTE NOIR -->
+  <section class="container" style="margin-bottom: 90px;">
+    <div class="newsletter-pact-card">
+      <div class="pact-icon-wrapper">
+        <span class="pact-icon">🩸</span>
+      </div>
+      <div class="pact-tag">✦ Sceau de Sang & Destin ✦</div>
+      <h3 class="pact-title">SCELLER LE PACTE NOIR</h3>
+      <p class="pact-desc">
+        Inscrivez votre patronyme pour recevoir nos alertes de déterrement de reliques, remises de sabbat et formules de protection nocturnes.
+      </p>
+
+      <form class="pact-form" onsubmit="event.preventDefault(); alert('Votre âme a été inscrite sur notre grand registre noir.'); this.reset();">
+        <div class="pact-input-wrapper">
+          <span class="pact-input-icon">✉️</span>
+          <input type="email" required placeholder="Votre adresse funéraire (email)..." class="pact-input">
+        </div>
+        <button type="submit" class="pact-submit-btn">
+          <span>🩸 Signer le Pacte</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER DU CIMETIÈRE -->
+  <footer class="footer-crypt">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-pumpkin">🎃</span>
+            <div class="logo-text">
+              <span class="logo-title">L'ANTRE DES ÂMES</span>
+              <span class="logo-sub">Marché Occulte</span>
+            </div>
+          </div>
+          <p>
+            Première manufacture occulte et crypte marchande d'Europe. Confection de reliques de prestige, décors macabres et curiosités d'outre-tombe pour Halloween.
+          </p>
+          <div class="creepy-eyes" title="Des yeux vous observent depuis les ténèbres...">
+            <span class="creepy-eye"></span>
+            <span class="creepy-eye"></span>
+            <span style="font-size: 0.8rem; color: var(--color-blood-glow); margin-left: 8px;">Présences invisibles dans la pièce</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Les Catacombes</h4>
+          <ul class="footer-links">
+            <li><a href="#shop-section">Tous les Artefacts</a></li>
+            <li><a href="#shop-section">Grimoires Anciens</a></li>
+            <li><a href="#shop-section">Potions & Poisons</a></li>
+            <li><a href="#shop-section">Masques d'Épouvante</a></li>
+            <li><a href="#shop-section">Reliques Interdites</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services Funéraires</h4>
+          <ul class="footer-links">
+            <li><a href="#">Livraison par Chauves-Souris</a></li>
+            <li><a href="#">Certificat de Malédiction</a></li>
+            <li><a href="#">Exorcisme & Retours</a></li>
+            <li><a href="#">Guide des Rituels 1666</a></li>
+            <li><a href="#">Contacter le Fossoyeur</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pactes & Législation</h4>
+          <ul class="footer-links">
+            <li><a href="#">Conditions de Possession</a></li>
+            <li><a href="#">Protection des Âmes (RGPD)</a></li>
+            <li><a href="#">Mentions Macabres</a></li>
+            <li><a href="#">Clause de Non-Responsabilité</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 L'Antre des Âmes Perdues - Tous droits réservés dans ce monde et dans l'autre.</p>
+        <p class="footer-disclaimer">
+          Avertissement : L'Antre des Âmes décline toute responsabilité en cas de lévitation spontanée d'objets, grattements dans les murs ou apparitions spectrales nocturnes consécutives à l'ouverture de votre colis.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DRAWER DU CHAUDRON (PANIER LATÉRAL) -->
+  <div id="cart-overlay" class="cart-overlay" onclick="toggleCartDrawer()"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <span>🫕</span>
+        <h3>Votre Chaudron Magique</h3>
+      </div>
+      <button class="close-btn" onclick="toggleCartDrawer()" title="Fermer">✕</button>
+    </div>
+
+    <!-- Liste des objets dans le panier -->
+    <div id="cart-items-container" class="cart-items-container">
+      <!-- Rempli dynamiquement par JS -->
+    </div>
+
+    <!-- Pied du Panier (Total et Scellement) -->
+    <div class="cart-footer">
+      <div>
+        <label style="font-size: 0.8rem; color: var(--text-ash); display: block; margin-bottom: 6px;">Formule de Réduction (Code Promo) :</label>
+        <div class="promo-input-box">
+          <input type="text" id="promo-code-input" class="promo-input" placeholder="Ex: HALLOWEEN666">
+          <button class="btn btn-secondary btn-sm" onclick="applyPromoCode()">Invoquer</button>
+        </div>
+        <div id="promo-feedback" class="promo-feedback"></div>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Sous-total des reliques :</span>
+        <span id="cart-subtotal">0.00 €</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Faveur des esprits :</span>
+        <span id="cart-discount" style="color: var(--color-spectral);">- 0.00 €</span>
+      </div>
+      <div class="cart-summary-line total-line">
+        <span>Tribut Total Requis :</span>
+        <span id="cart-total" style="color: var(--color-pumpkin-glow);">0.00 €</span>
+      </div>
+
+      <button id="cart-checkout-btn" class="btn btn-blood btn-lg" style="width: 100%; justify-content: center;" onclick="openCheckoutModal()">
+        <span>🩸 Sceller le Pacte de Sang</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MODALE DÉTAILS D'UN PRODUIT (QUICK VIEW) -->
+  <div id="product-modal" class="modal-wrapper" onclick="if(event.target === this) closeProductModal()">
+    <div class="modal-box">
+      <button class="modal-close-corner" onclick="closeProductModal()">✕</button>
+      <div id="modal-product-content">
+        <!-- Rempli dynamiquement par JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALE FINALISATION DU PACTE (CHECKOUT) -->
+  <div id="checkout-modal" class="modal-wrapper" onclick="if(event.target === this) closeCheckoutModal()">
+    <div class="modal-box checkout-modal-box">
+      <button class="modal-close-corner" onclick="closeCheckoutModal()">✕</button>
+      
+      <div class="pact-header">
+        <div class="pact-pentagram">⛧</div>
+        <h3 style="font-family: var(--font-gothic); font-size: 1.6rem; color: #fff;">SCELLER LA COMMANDE OCCULTE</h3>
+        <p style="color: var(--text-ash); font-size: 0.88rem;">Fournissez les coordonnées nécessaires à la matérialisation de vos reliques.</p>
+      </div>
+
+      <form id="blood-pact-form" class="blood-form" onsubmit="submitBloodPact(event)">
+        <div class="form-group">
+          <label>Nom ou Titre de Cérémonie :</label>
+          <input type="text" required class="form-input" placeholder="Ex: Dame Morgane Ravenwood">
+        </div>
+
+        <div class="form-group">
+          <label>Demeure / Manoir pour la livraison :</label>
+          <input type="text" required class="form-input" placeholder="Ex: 13 Allée des Brumes, Crypte 4B">
+        </div>
+
+        <div class="form-group">
+          <label>Pacte de Paiement Obscur :</label>
+          <select class="form-input" style="cursor: pointer;">
+            <option>🩸 Prélèvement d'Âme en Ligne (Carte Bancaire Sécurisée)</option>
+            <option>🪙 Pièces d'Or Maudites (PayPal Paranormal)</option>
+            <option>💀 Cryptomonnaie Spectrale (Bitcoin de l'Au-delà)</option>
+            <option>📜 Paiement au Fossoyeur à la réception</option>
+          </select>
+        </div>
+
+        <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px;">
+          <input type="checkbox" required id="pact-check" style="margin-top: 4px;">
+          <label for="pact-check">Je certifie avoir lu les avertissements occultes et dégage les sorciers de toute malédiction involontaire.</label>
+        </div>
+
+        <button type="submit" class="btn btn-blood btn-lg" style="width: 100%; justify-content: center; margin-top: 10px;">
+          <span>🩸 Apposer mon Sceau Éternel</span>
+        </button>
+      </form>
+
+      <div id="pact-result-box" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- Éléments Audio HTML5 Natifs pour l'ambiance -->
+  <audio id="halloween-theme-audio" src="assets/audio/halloween_theme.mp3" loop preload="auto"></audio>
+  <audio id="scary-laugh-audio" src="assets/audio/scary_laugh.mp3" preload="auto"></audio>
+
+  <!-- Scripts JavaScript -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/audio-fx.js"></script>
+  <script src="assets/js/canvas-fx.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>

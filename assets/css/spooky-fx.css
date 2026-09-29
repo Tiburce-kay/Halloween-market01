@@ -1,0 +1,406 @@
+/* ==========================================================================
+   EFFETS SPECIAUX SPOOKY & DÉCORATIONS RÉALISTES HALLOWEEN
+   Cercueils gothiques, faucheuse, monstres, sang, rires et tremblements
+   ========================================================================== */
+
+/* Keyframe Animations */
+@keyframes pulseRed {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(217, 4, 41, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 0, 85, 0.85);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pulseOrange {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 123, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 160, 0, 0.85);
+  }
+}
+
+@keyframes pulseForbidden {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(114, 0, 38, 0.5);
+    border-color: #f72585;
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(247, 37, 133, 0.9);
+    border-color: #ff0055;
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes eyeBlink {
+  0%, 92%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.08);
+  }
+}
+
+@keyframes flickerLantern {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #00b4d8);
+  }
+  25% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 6px #0077b6);
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 16px #48cae4);
+  }
+  75% {
+    opacity: 0.78;
+    filter: drop-shadow(0 0 8px #0096c7);
+  }
+}
+
+@keyframes soulAscend {
+  0% {
+    transform: translateY(0) scale(0.6) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(1.5) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cauldronBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.25) rotate(-6deg);
+  }
+  60% {
+    transform: scale(1.15) rotate(6deg);
+  }
+}
+
+/* Tremblement d'angoisse lors du rire démoniaque */
+.screen-tremble {
+  animation: horrorTremor 0.5s ease-in-out;
+}
+
+@keyframes horrorTremor {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, 2px) rotate(-0.5deg); }
+  40% { transform: translate(3px, -2px) rotate(0.5deg); }
+  60% { transform: translate(-2px, -3px) rotate(-0.3deg); }
+  80% { transform: translate(2px, 3px) rotate(0.3deg); }
+}
+
+/* Flash d'Éclair */
+.lightning-flash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(180, 210, 255, 0.7) 100%);
+  z-index: 9999;
+  pointer-events: none;
+  animation: flashFlicker 0.4s ease-out forwards;
+}
+
+@keyframes flashFlicker {
+  0% { opacity: 0; }
+  10% { opacity: 0.95; }
+  30% { opacity: 0.2; }
+  50% { opacity: 0.98; }
+  100% { opacity: 0; }
+}
+
+/* Particule d'Âme qui s'envole (Add to Cart) */
+.floating-soul-particle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 2rem;
+  z-index: 9999;
+  filter: drop-shadow(0 0 15px #00ff88);
+  animation: soulAscend 1s ease-out forwards;
+}
+
+.cart-bounce {
+  animation: cauldronBounce 0.6s ease;
+}
+
+/* SVG Classes d'animation */
+.svg-pulse {
+  animation: gentleFloat 4s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.svg-flicker {
+  animation: flickerLantern 1.8s infinite alternate ease-in-out;
+}
+
+.svg-bubble1 {
+  animation: gentleFloat 2s infinite ease-in-out;
+}
+.svg-bubble2 {
+  animation: gentleFloat 2.6s infinite ease-in-out 0.4s;
+}
+.svg-bubble3 {
+  animation: gentleFloat 1.8s infinite ease-in-out 0.8s;
+}
+
+.svg-float {
+  animation: gentleFloat 3s infinite ease-in-out;
+}
+
+/* Dégoulinures de Sang décoratives */
+.blood-drip-border {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1200,0 L1200,5 C1150,5 1145,28 1135,28 C1125,28 1120,5 1070,5 C1020,5 1010,22 1000,22 C990,22 985,5 930,5 C870,5 860,30 848,30 C836,30 830,5 780,5 C720,5 710,18 700,18 C690,18 685,5 620,5 C570,5 560,26 550,26 C540,26 535,5 480,5 C420,5 410,24 400,24 C390,24 385,5 320,5 C260,5 250,29 238,29 C226,29 220,5 170,5 C120,5 110,20 100,20 C90,20 85,5 0,5 Z' fill='%23d90429'/%3E%3C/svg%3E") repeat-x;
+  background-size: 600px 24px;
+  z-index: 10;
+  margin-top: -1px;
+  filter: drop-shadow(0 4px 6px rgba(217, 4, 41, 0.4));
+}
+
+/* Toiles d'araignées dans les coins de page */
+.cobweb {
+  position: fixed;
+  width: 160px;
+  height: 160px;
+  pointer-events: none;
+  z-index: 80;
+  opacity: 0.35;
+  transition: opacity 0.3s;
+}
+
+.cobweb:hover {
+  opacity: 0.7;
+}
+
+.cobweb-top-left {
+  top: 0;
+  left: 0;
+}
+
+.cobweb-top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* Yeux rougeoyants dans l'ombre */
+.creepy-eyes {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  filter: drop-shadow(0 0 8px #ff0055);
+}
+
+.creepy-eye {
+  width: 10px;
+  height: 10px;
+  background: #ff0055;
+  border-radius: 50%;
+  animation: eyeBlink 5s infinite;
+  box-shadow: 0 0 10px #ff0055;
+}
+
+/* ==========================================================================
+   DÉCORATIONS RÉALISTES FLOTTANTES (CERCUEIL, FAUCHEUUSE, GARGOYLE)
+   ========================================================================== */
+
+/* Cercueil Gothique Flottant Réaliste (côté droit) */
+.realistic-deco-coffin {
+  position: fixed;
+  right: 18px;
+  bottom: 40px;
+  width: 85px;
+  height: 142px;
+  background: url('../images/coffin.png') center center / contain no-repeat;
+  z-index: 95;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 10px rgba(217, 4, 41, 0.4));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s;
+  animation: coffinFloat 5s infinite ease-in-out;
+}
+
+.realistic-deco-coffin:hover {
+  transform: scale(1.15) rotate(-5deg);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(255, 0, 60, 0.85));
+}
+
+@keyframes coffinFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+.coffin-creak {
+  animation: coffinShake 1.2s ease-in-out;
+}
+
+@keyframes coffinShake {
+  0% { transform: scale(1) rotate(0deg); }
+  20% { transform: scale(1.25) rotate(-10deg); filter: drop-shadow(0 0 40px #ff0055); }
+  40% { transform: scale(1.2) rotate(10deg); filter: drop-shadow(0 0 50px #ff7b00); }
+  60% { transform: scale(1.15) rotate(-5deg); }
+  80% { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Faucheuse / Monstre Réaliste Flottant (côté gauche) */
+.realistic-deco-reaper {
+  position: fixed;
+  left: 18px;
+  bottom: 40px;
+  width: 90px;
+  height: 122px;
+  background: url('../images/reaper.png') center center / contain no-repeat;
+  z-index: 95;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(255, 123, 0, 0.5));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s;
+  animation: reaperFloat 6s infinite ease-in-out 1s;
+}
+
+.realistic-deco-reaper:hover {
+  transform: scale(1.15) rotate(4deg);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(255, 0, 50, 0.9));
+}
+
+@keyframes reaperFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-3deg);
+  }
+}
+
+.reaper-strike {
+  animation: reaperAttack 1s ease-in-out;
+}
+
+@keyframes reaperAttack {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3) translateX(20px) rotate(12deg); filter: drop-shadow(0 0 40px #ff0055); }
+  100% { transform: scale(1); }
+}
+
+/* Monstre Gargouille Réaliste Perchée */
+.realistic-deco-gargoyle {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  background: url('../images/gargoyle_monster.jpg') center center / cover no-repeat;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 123, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9), inset 0 0 15px #000;
+  filter: contrast(1.2) drop-shadow(0 0 10px rgba(255, 123, 0, 0.5));
+  z-index: 10;
+  transition: transform 0.3s, filter 0.3s;
+  cursor: pointer;
+}
+
+.realistic-deco-gargoyle:hover {
+  transform: scale(1.15) rotate(-5deg);
+  filter: contrast(1.3) drop-shadow(0 0 25px rgba(255, 0, 50, 0.9));
+}
+
+/* Squelette Réaliste */
+.realistic-deco-skeleton {
+  width: 55px;
+  height: 120px;
+  background: url('../images/skeleton.svg') center center / contain no-repeat;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  opacity: 0.85;
+  transition: transform 0.3s;
+}
+
+.realistic-deco-skeleton:hover {
+  transform: scale(1.1) rotate(6deg);
+  filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.6));
+}
+
+/* Animation Citrouille cliquable */
+.interactive-pumpkin {
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.interactive-pumpkin:hover {
+  transform: scale(1.2) rotate(-8deg);
+  filter: drop-shadow(0 0 20px #ff7b00);
+}
+
+.pumpkin-glow-burst {
+  animation: pumpkinBurst 1s ease-out forwards;
+}
+
+@keyframes pumpkinBurst {
+  0% {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 30px #ff0055);
+  }
+  50% {
+    transform: scale(1.4) rotate(15deg);
+    filter: drop-shadow(0 0 50px #ff7b00);
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 12px #ff7b00);
+  }
+}
+
+/* Brume rampante au sol */
+.creeping-fog-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 10, 30, 0.4) 50%, rgba(7, 4, 10, 0.95) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Mode Lanterne */
+body.lantern-active {
+  cursor: crosshair;
+}
+
+body.lantern-active .hero-section {
+  filter: brightness(0.7) contrast(1.2);
+}
+
+body.lantern-active .product-card {
+  filter: brightness(0.75);
+  transition: filter 0.3s;
+}
+
+body.lantern-active .product-card:hover {
+  filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 170, 50, 0.5));
+}
